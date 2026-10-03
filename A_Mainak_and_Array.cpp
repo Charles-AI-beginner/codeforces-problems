@@ -11,27 +11,24 @@ using namespace std;
 void solve(){
     int n;
     cin >> n;
-    vector<long long> arr(n);
-    long long c;
+    vector<int> arr(n);
+    int c;
     for(int i=0; i<n; i++){
         cin >> c;
         arr[i] = c;
     }
-    for (int i = 0; i < n; i++) {
-        if (arr[i] == 1)
-            arr[i]++;
-    }
-
-    for (int i = 1; i < n; i++) {
-        if (arr[i] % arr[i-1] == 0)
-            arr[i]++;
-    }
+    int max1=arr[n-1]-arr[0],max2=INT_MIN,max3=INT_MIN;
     for(int i=0; i<n; i++){
-        cout << arr[i] << " ";
+        if(i>0){
+            max1 = max(max1,arr[i-1]-arr[i]);
+            max2 = max(max2,arr[i]-arr[0]);
+        }
+        if(i<n-1){
+            max3 = max(max3,arr[n-1]-arr[i]);
+        }
     }
-    cout << "\n";
-    
-    
+    int maxDif = max(max(max1,max2), max3);
+    cout << maxDif << "\n";
 }
 
 

@@ -12,44 +12,25 @@ void solve(){
     int n,m,x,y;
     cin >> n >> m >> x >> y;
     vector<int> a(x),b(y);
+    int sum1=0,sum2=0
     for(int i=0; i<x; i++){
         int c;
         cin >> c;
+        sum1+=c;
         a[i] = c;
     }
     for(int i=0; i<y; i++){
         int c;
         cin >> c;
+        sum2+=c;
         b[i] = c;
     }
-    int l=n,k=m;
-    if(n<m){
-        k=m-1;
-    }
-    else{
-        l=n-1;
-    }
-    int sum = 0;
-    if(x<n){
-        for(int it:a){
-            sum += it;
-        }
-    }
-    else{
-        for(int i=0; i<l; i++){
-            sum += a[x-i-1];
-        }
-    }
-    if(y<m){
-        for(int it:b){
-            sum += it;
-        }
-    }
-    else{
-        for(int i=0; i<k; i++){
-            sum += a[y-i-1];
-        }
-    }
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+
+
+    int sum3=sum1+sum2-b[],sum4=0;
+
     cout << sum << "\n";
 }
 

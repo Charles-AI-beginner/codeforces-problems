@@ -12,27 +12,42 @@ void solve(){
     int n;
     cin >> n;
     vector<int> arr(n);
-    int cnt = 0,pr=0,prev=-1;
-    bool flag = true;
+
     for(int i=0; i<n; i++){
-        int c;
-        cin >> c;
-        arr[i] = c;
-        if(i>0 && arr[i-1] == arr[i]){
-            if(flag && prev>=0){
-                if(i>1 && prev == i-2){
-                    cnt+=2;
-                    flag = false;
-                }
+        cin >> arr[i];
+    }
+
+    bool flag = true;
+
+    int prev = arr[0];
+    int previ = -1;
+    for(int i=1; i<n; i++){
+        if(arr[i]==prev){
+            if(previ>0 && previ == i-2){
+                int temp = arr[i-1];
+                arr[i-1] = arr[previ];
+                arr[previ] = temp;
+                flag = false;
+                break;
             }
-            else{
-                prev = i;
+            previ = i;
+        }
+       prev = arr[i];
+    }
+    if(flag){
+        prev = arr[0];
+        for(int i=0; i<n; i++){
+            if(prev == arr[i]){
+                if(i<n-1)
             }
         }
-        else{
-            cnt++;
+    }
+    int cnt = n, j = 1;
+    while(j<n){
+        if(arr[j]==arr[j-1]){
+            cnt--;
         }
-        
+        j++;
     }
     cout << cnt << "\n";
     
